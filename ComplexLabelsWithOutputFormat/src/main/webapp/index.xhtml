@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Create complex labels with 'p:outputLabel', 'p:link', 'h:outputFormat' and 'o:param'</title> 
+        <style type="text/css">
+            .ui-widget {
+                font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+                font-size: 12px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h5>Create complex labels with 'p:outputLabel', 'p:link', 'h:outputFormat' and 'o:param'</h5>
+        <hr/>
+        <h:form>                    
+            <p:commandLink action="#{localeBean.setCurrentLocale('fr')}" immediate="true" ajax="false">
+                <h:graphicImage library="default" name="imgs/french.png" />
+            </p:commandLink>
+            <p:commandLink action="#{localeBean.setCurrentLocale('en')}" immediate="true" ajax="false">               
+                <h:graphicImage library="default" name="imgs/english.png" />
+            </p:commandLink>
+        </h:form>
+        <h:form>
+            <h:panelGrid columns="4">
+                <p:outputLabel for="zipCodeId">
+                    <h:outputFormat value="#{msg['ZIPCODE']} ({0}):" escape="false">
+                        <o:param>
+                            <p:link value="see samples" outcome="#{view.locale eq 'en' ? 'sample_en':'sample_fr'}">
+                                <o:param name="locale" value="#{view.locale}" />
+                            </p:link>
+                        </o:param>                    
+                    </h:outputFormat>
+                </p:outputLabel>
+                <p:inputText id="zipCodeId" required="true" />
+                <p:message for="zipCodeId" />
+                <p:commandButton value="Dial"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
