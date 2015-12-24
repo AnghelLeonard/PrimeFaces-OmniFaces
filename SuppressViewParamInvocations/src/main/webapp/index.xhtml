@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"    
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>             
+        <o:viewParam name="nodes" value="#{mindmapViewBean.root}" default="root|foo" required="true" converter="nodesConverter" validator="nodesValidator"/>                
+    </f:metadata>
+    <h:head>
+        <title>Suppressing ViewParam invocation of the setter/converter/validator at each postback</title> 
+        <style type="text/css">
+            .ui-widget {
+                font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+                font-size: 12px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 400;
+                line-height: 20px;               
+            }            
+        </style>
+    </h:head>
+    <h:body>
+        <h5>Suppressing ViewParam invocation of the setter/converter/validator at each postback</h5>
+        <hr/>   
+        <h:panelGrid columns="2">
+            <p:messages/>           
+            <h:form>
+                <p:commandButton value="Reset Mindmap" action="#{mindmapViewBean.resetMindMap()}" ajax="false"/>
+            </h:form>                        
+        </h:panelGrid>
+        <p:mindmap value="#{mindmapViewBean.root}" style="width: 450px; height: 400px; border: 1px solid black;">                
+            <p:ajax event="select" listener="#{mindmapViewBean.onNodeSelect}" />
+        </p:mindmap> 
+        <h:form>
+            <p:commandButton value="Unrelated to Mindmap" ajax="false"/>
+        </h:form>
+    </h:body>
+</html>
+
