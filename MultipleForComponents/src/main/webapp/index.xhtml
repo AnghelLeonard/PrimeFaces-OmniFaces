@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>PrimeFaces messages to OmniFaces messages with multiple 'for' components</title> 
+        <style type="text/css">
+            .ui-widget {
+                font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+                font-size: 12px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 400;
+                line-height: 20px;               
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h5>PrimeFaces messages to OmniFaces messages with multiple 'for' components</h5>
+        <hr/>
+        Register:
+        <h:form>          
+            <h:panelGrid id="gridId" columns="1" cellpadding="2">
+
+                <o:messages for="nameId emailId" var="msgs">
+                    <div class="ui-message ui-message-error ui-widget ui-corner-all" aria-live="polite" style="margin:5px;">
+                        <span class="ui-messages-error-icon" style="height:16px; width:16px; margin-top:0; background-position:0 -96px;"></span>
+                        <span class="ui-message-error-detail">#{msgs.detail}</span>
+                    </div>
+                </o:messages>
+
+                <p:outputLabel for="nameId" value="Name:" />
+                <p:inputText id="nameId" required="true" /> 
+              
+                <p:outputLabel for="emailId" value="E-mail:" />
+                <p:inputText id="emailId" required="true" /> 
+
+                <p:outputLabel for="phoneId" value="Phone:" />
+                <p:inputText id="phoneId" required="true" />                                                 
+
+            </h:panelGrid>
+
+            <p:commandButton id="submitButtonId" value="Register" update="gridId" />
+        </h:form>
+    </h:body>
+</html>
+
