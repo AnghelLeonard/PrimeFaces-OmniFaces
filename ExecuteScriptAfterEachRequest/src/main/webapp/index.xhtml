@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui">
+    <h:head>
+        <title>Execute a snippet of JavaScript after each request (AJAX/non-AJAX)</title> 
+        <style type="text/css">
+            .ui-widget {
+                font-family: Rockwell, 'Courier Bold', Courier, Georgia, Times, 'Times New Roman', serif;
+                font-size: 12px;
+                font-style: normal;
+                font-variant: normal;
+                font-weight: 400;
+                line-height: 20px;
+            }
+        </style>               
+        <o:onloadScript>
+            document.getElementById('panelId').innerHTML = Math.random();
+        </o:onloadScript>
+    </h:head>
+    <h:body>
+        <h5>Execute a snippet of JavaScript after each request (AJAX/non-AJAX)</h5>
+        <hr/>
+        <h:panelGrid columns="2" cellspacing="5">
+            <h:form>
+                <p:commandButton value="Generate Random (non-AJAX)" ajax="false"/>
+            </h:form>
+            <h:form>
+                <p:commandButton value="Generate Random (AJAX)" oncomplete="alert('AJAX request complete!');"/>
+            </h:form>
+        </h:panelGrid>
+        <hr/>
+        <h:panelGroup id="panelId"/>                        
+    </h:body>
+</html>
+
