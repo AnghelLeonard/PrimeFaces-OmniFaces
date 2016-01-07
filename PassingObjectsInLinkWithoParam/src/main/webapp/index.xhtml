@@ -27,7 +27,7 @@
                 <p:inputText id="phone" required="true" value="#{dataBean.number}" converter="phoneNumberConverter" />
                 <p:message for="phone" />               
 
-                <p:commandButton value="Send" update=":linkId"/>                    
+                <p:commandButton value="Send" update="@form :linkId"/>                    
             </h:panelGrid>
             <hr/>            
         </h:form>
